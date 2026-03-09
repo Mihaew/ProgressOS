@@ -186,6 +186,8 @@ Stranica s otključanim postignućima.
 * logout
 * password reset
 
+![slika](VisualPrototype.png) 
+
 
 # Firebase struktura (trenutna, mjenjat ce se)
 ![slika](CurrectFirebaseStructure.png) 
