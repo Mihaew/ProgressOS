@@ -1,16 +1,16 @@
-## ProgressOS
+# ProgressOS
 
-ProgressOS je Web aplikacija koja omogućuje korisnicima praćenje vlastitog napretka u različitim područjima života kroz kombinaciju statističkog praćenja aktivnosti i gamifikacijskog sustava. Aplikacija je zamišljena kao alat koji korisnicima pomaže razviti konzistentne navike i dugoročno pratiti vlastiti razvoj kroz jasno prikazane podatke, statistiku i sustav nagrađivanja.
+ProgressOS je Web aplikacija koja omogućuje korisnicima praćenje vlastitog napretka u različitim područjima života kroz kombinaciju statističkog praćenja aktivnosti i gamify sustava. Aplikacija je zamišljena kao alat koji korisnicima pomaže razviti konzistentne navike i pratiti vlastiti long-term razvoj kroz jasno prikazane podatke, statistiku i reward system.
 
-Glavna ideja aplikacije je pretvoriti svakodnevne aktivnosti u mjerljiv napredak. Korisnik kroz jednostavan sustav dnevnog unosa aktivnosti (Daily Log) bilježi aktivnosti poput programiranja, vježbanja, sporta, spavanja ili meditacije. Na temelju tih aktivnosti aplikacija automatski izračunava različite statistike, dodjeljuje iskustvene bodove (EXP), povećava razine (Level) i prati dugoročne rezultate korisnika.
+Glavna ideja aplikacije je pretvoriti svakodnevne aktivnosti u mjerljiv napredak. Korisnik kroz jednostavan sustav dnevnog unosa aktivnosti (Daily Log) bilježi aktivnosti poput programiranja, vježbanja, sporta, spavanja ili meditacije. Na temelju tih aktivnosti aplikacija automatski izračunava različite statistike, experience points, povećava level i prati long-term rezultate korisnika.
 
-Za razliku od jednostavnih habit tracking aplikacija, ProgressOS kombinira **detaljno praćenje aktivnosti (tracker)** i **gamifikacijski sustav napredovanja (gamified system)**. Svaka aktivnost doprinosi određenoj kategoriji života, poput zdravlja, produktivnosti ili sporta, te kroz vrijeme povećava ukupni napredak korisnika.
+Za razliku od jednostavnih habit tracking aplikacija, ProgressOS kombinira *etaljno praćenje aktivnosti (tracker) i gamifikacijski sustav napredovanja (gamified system). Svaka aktivnost doprinosi određenoj kategoriji života, poput health, productivity ili sport, te kroz vrijeme povećava ukupni napredak korisnika.
 
-Sustav aplikacije organiziran je kroz hijerarhiju kategorija (branches). Postoji nekoliko glavnih kategorija koje predstavljaju ključna područja života, kao što su zdravlje, produktivnost, sport i društveni život. Unutar tih kategorija korisnik može dodavati vlastite podkategorije ili aktivnosti. Na primjer, unutar kategorije Sport korisnik može dodati aktivnosti poput odbojke ili košarke, dok u kategoriji Produktivnost može pratiti vrijeme provedeno programirajući ili učeći.
+Sustav aplikacije organiziran je kroz hijerarhiju kategorija (branches). Postoji nekoliko glavnih kategorija koje predstavljaju ključna područja života, kao što su health, productivity, sport, coding i social life. Unutar tih kategorija korisnik može dodavati vlastite podkategorije ili aktivnosti. Na primjer, unutar kategorije Sport korisnik može dodati aktivnosti poput odbojke ili košarke, dok u kategoriji Produktivnost može pratiti vrijeme provedeno programirajući ili učeći.
 
-Svaka aktivnost koju korisnik unese u dnevni zapis automatski se obrađuje u pozadini aplikacije. Sustav iz tih podataka računa dnevne statistike, ukupne statistike kroz vrijeme (All-Time stats), razine kategorija i globalnu razinu korisnika. Razina se računa na temelju ukupnog broja iskustvenih bodova koji se dobivaju kroz aktivnosti. Sustav koristi eksponencijalni model rasta razina, što znači da je za svaku sljedeću razinu potrebno sve više iskustva, čime se potiče dugoročna konzistentnost.
+Svaka aktivnost koju korisnik unese u dnevni zapis automatski se obrađuje u pozadini aplikacije. Sustav iz tih podataka računa dnevne statistike, ukupne statistike kroz vrijeme (All-Time stats), levele kategorija i globalni level korisnika. Razina se računa na temelju ukupnog broja experience bodova koji se dobivaju kroz aktivnosti. Sustav koristi eksponencijalni model rasta razina, što znači da je za svaku sljedeću razinu potrebno sve više iskustva, čime se potiče long-term konzistentnost.
 
-Poseban element aplikacije je **Daily Score sustav**, koji svakom danu dodjeljuje ocjenu od 0 do 100 na temelju različitih aktivnosti poput spavanja, produktivnosti, fizičke aktivnosti i raspoloženja. Ovaj sustav omogućuje korisniku da brzo procijeni kvalitetu pojedinog dana.
+Poseban element aplikacije je Daily Score sustav, koji svakom danu dodjeljuje ocjenu od 0 do 100 na temelju različitih aktivnosti poput spavanja, produktivnosti, fizičke aktivnosti i raspoloženja. Ovaj sustav omogućuje korisniku da brzo procijeni kvalitetu pojedinog dana.
 
 Aplikacija također uključuje kalendarski prikaz aktivnosti inspiriran GitHub contribution grafom. Svaki dan u kalendaru prikazuje ikone aktivnosti koje su se dogodile tog dana, poput programiranja, sporta ili vježbanja. Na taj način korisnik može vrlo brzo dobiti vizualni pregled svoje konzistentnosti kroz vrijeme.
 
@@ -18,9 +18,7 @@ Uz to, ProgressOS uključuje sustav postignuća (Achievements) koji nagrađuje k
 
 Sve prikupljene informacije prikazuju se kroz interaktivne grafove i statistiku. Korisnik može vidjeti dnevne rezultate, prosjeke kroz vrijeme i ukupne statistike poput ukupnog broja sati programiranja, ukupnog broja treninga ili ukupnog broja ponavljanja pojedinih vježbi.
 
-Tehnološki gledano, aplikacija koristi moderne web tehnologije. Frontend je razvijen pomoću SolidJS frameworka, dok se za dizajn koristi TailwindCSS i DaisyUI. Backend funkcionalnost osigurava Firebase platforma koja pruža autentifikaciju korisnika, bazu podataka (Firestore) i hosting aplikacije.
-
-Cilj projekta je izraditi funkcionalnu i vizualno atraktivnu web aplikaciju koja omogućuje korisnicima dugoročno praćenje osobnog napretka kroz kombinaciju statistike, vizualizacije podataka i gamifikacije.
+Cilj projekta je izraditi funkcionalnu web aplikaciju koja omogućuje korisnicima long-term praćenje osobnog napretka kroz kombinaciju statistike, vizualizacije podataka i gamifikacije.
 
 ---
 
@@ -37,7 +35,7 @@ Cilj projekta je izraditi funkcionalnu i vizualno atraktivnu web aplikaciju koja
 | Calendar view          | Kalendarski prikaz aktivnosti s ikonama                           |
 | All-Time statistika    | Praćenje ukupnih statistika kroz vrijeme                          |
 | Branch sustav          | Organizacija aktivnosti u kategorije života                       |
-| EXP i Level sustav     | Napredovanje kroz iskustvene bodove                               |
+| EXP i Level sustav     | Napredovanje kroz experience points                               |
 | Daily Score            | Dnevna ocjena produktivnosti                                      |
 | Streak sustav          | Praćenje konzistentnosti aktivnosti                               |
 
@@ -59,7 +57,7 @@ Cilj projekta je izraditi funkcionalnu i vizualno atraktivnu web aplikaciju koja
 
 ---
 
-# Scenarij korištenja (User Flow)
+# User Flow
 
 ### 1. Registracija
 
@@ -71,18 +69,18 @@ Korisnik dolazi na aplikaciju i kreira novi račun putem registracije. Nakon reg
 
 Nakon prijave korisnik vidi dashboard koji prikazuje:
 
-* globalnu razinu
+* globalni level
 * napredak kroz EXP
 * današnje aktivnosti
 * trenutne streakove
 * kalendar aktivnosti
-* statističke grafove
+* grafove
 
 ---
 
 ### 3. Dodavanje aktivnosti
 
-Korisnik otvara opciju **Add Activity** i odabire aktivnost iz liste.
+Korisnik otvara opciju Add Activity i odabire aktivnost iz liste.
 
 Primjeri aktivnosti:
 
@@ -131,7 +129,7 @@ Kroz duže korištenje aplikacije korisnik može pratiti:
 
 ---
 
-# Vizualni prototip (struktura stranica)
+# Vizualni prototip
 
 ## Glavne stranice aplikacije
 
@@ -188,12 +186,6 @@ Stranica s otključanim postignućima.
 * logout
 * password reset
 
----
 
-Ako želiš, u sljedećem koraku mogu ti pomoći još s **3 stvari koje će dramatično podići projekt**:
-
-1️⃣ **točan Firebase database model (Firestore collections)**
-2️⃣ **strukturu SolidJS projekta (folderi i komponente)**
-3️⃣ **UI layout za dashboard (što točno ide gdje)**
-
-To je praktički **Faza 2 projekta spremna** i implementacija će ti biti puno lakša.
+# Firebase struktura (trenutna, mjenjat ce se)
+![slika](CurrectFirebaseStructure.png) 
