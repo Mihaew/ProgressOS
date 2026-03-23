@@ -127,5 +127,11 @@ export const authService = {
         };
         const message = errorMessages[error.code] || "An unexpected error occurred, please contact the administrator";
         return new Error(message);
+    },
+    async getUserRole(user) {
+        if (!user) return null;
+
+        const token = await user.getIdTokenResult();
+        return token.claims.role || "user";
     }
 };

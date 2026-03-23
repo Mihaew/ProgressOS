@@ -1,7 +1,7 @@
 import { Router, Route, Navigate } from "@solidjs/router";
 import { isAuthenticated, authLoading } from "./services/auth.js";
 import { Show } from "solid-js";
-import Toast from "./components/toast.jsx";
+import Toast from "./components/Toast.jsx";
 import "./styles/toast.css";
 
 
@@ -9,6 +9,9 @@ import TestHomePage from "./TestHomePage";
 import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignOut from "./pages/SignOut.jsx";
+import PasswordReset from "./pages/PasswordReset.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
+import Error from "./pages/Error.jsx";
 
 export default function App() {
   return (
@@ -19,8 +22,13 @@ export default function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signout" component={SignOut} />
+        <Route path="/password-reset" component={PasswordReset} />
+        <Route path="/profile" component={AuthBoundary}>
+          <Route path="/" component={UserProfile} />
+        </Route>
       </Route>
 
+      <Route path="/error" component={Error} />
       <Route path="*" component={NotFound} />
     </Router>
   );
@@ -74,6 +82,11 @@ function Layout(props) {
               <div class="pos-nav-item__icon">❋</div>
               <span class="pos-nav-item__label">Achievements</span>
             </a>
+
+            <a href="/user/profile" class="pos-nav-item">
+              <div class="pos-nav-item__icon">☰</div>
+              <span class="pos-nav-item__label">Profile</span>
+            </a>
           </aside>
 
           <main class="pos-content">{props.children}</main>
@@ -85,6 +98,21 @@ function Layout(props) {
 }
 
 function NotFound() {
-  return <Navigate href="/error" state={{ error: { title: "404", message: "Tražena stranica ne postoji." } }} />
+  return <Navigate href="/error" state={{ error: { title: "404", message: "Site not found." } }} />
 }
 
+function AuthBoundary(props) {
+    return (
+        <Show when={!authLoading()} fallback={
+            <div class="flex justify-center items-center min-h-screen">
+                <span class="loading loading-spinner loading-xl"></span>
+            </div>
+        }>
+            {isAuthenticated() ?
+                (props.children) :
+                (<Navigate
+                    href="/error"
+                    state={{ error: { title: "401", message: "Not allowed" } }} />)}
+        </Show>
+    );
+}

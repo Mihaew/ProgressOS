@@ -2,7 +2,7 @@ import "../styles/signup.css";
 import { createSignal } from "solid-js";
 import { authService } from "../services/auth.js";
 import { SignUpSchema } from "../lib/schemas.js";
-import { addToast } from "../components/toast.jsx";
+import { addToast } from "../components/Toast";
 import { useNavigate } from "@solidjs/router";
 
 export default function SignUp() {

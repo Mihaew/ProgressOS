@@ -2,7 +2,7 @@ import "../styles/signup.css";
 import { createSignal } from "solid-js";
 import { authService } from "../services/auth.js";
 import { SignInSchema } from "../lib/schemas.js";
-import { addToast } from "../components/toast.jsx";
+import { addToast } from "../components/Toast";
 import { useNavigate } from "@solidjs/router";
 
 export default function SignIn() {
@@ -83,6 +83,9 @@ export default function SignIn() {
 
                 <p class="signup-card__footer">
                     Don't have an account? <a class="signup-card__link" href="/user/signup">Sign up</a>
+                </p>
+                <p class="signup-card__footer">
+                    Forgot your password? <a class="signup-card__link" href="/user/password-reset">Reset it</a>
                 </p>
 
             </div>
