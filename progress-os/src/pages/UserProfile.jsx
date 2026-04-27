@@ -129,14 +129,6 @@ export default function UserProfile() {
                     </div>
                 </div>
 
-                <div class="profile-card profile-card--danger">
-                    <h2 class="profile-card__title profile-card__title--danger">Danger zone</h2>
-                    <p class="profile-card__desc">These actions are permanent and cannot be undone.</p>
-                    <div class="profile-card__actions">
-                        <button class="profile-btn profile-btn--danger">Delete account</button>
-                    </div>
-                </div>
-
             </div>
         </div>
     );

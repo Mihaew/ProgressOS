@@ -12,6 +12,8 @@ import SignOut from "./pages/SignOut.jsx";
 import PasswordReset from "./pages/PasswordReset.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import Error from "./pages/Error.jsx";
+import Calendar from "./pages/Calendar.jsx";
+import Stats from "./pages/Stats.jsx";
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/profile" component={AuthBoundary}>
           <Route path="/" component={UserProfile} />
         </Route>
+        <Route path="/calendar" component={Calendar} />
+        <Route path="/stats" component={Stats} />
       </Route>
 
       <Route path="/error" component={Error} />
@@ -68,12 +72,12 @@ function Layout(props) {
               <span class="pos-nav-item__label">Daily Log</span>
             </a>
 
-            <a href="#" class="pos-nav-item">
+            <a href="/user/calendar" class="pos-nav-item">
               <div class="pos-nav-item__icon">◫</div>
               <span class="pos-nav-item__label">Calendar</span>
             </a>
 
-            <a href="#" class="pos-nav-item">
+            <a href="/user/stats" class="pos-nav-item">
               <div class="pos-nav-item__icon">▲</div>
               <span class="pos-nav-item__label">Stats</span>
             </a>

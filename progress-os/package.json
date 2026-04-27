@@ -11,19 +11,19 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.13",
+    "@tailwindcss/vite": "^4.2.2",
     "daisyui": "^5.5.19",
-    "solid-devtools": "^0.34.3",
-    "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2",
-    "vite": "^7.3.1",
-    "vite-plugin-solid": "^2.11.8"
+    "solid-devtools": "^0.34.5",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.3",
+    "vite": "^7.3.2",
+    "vite-plugin-solid": "^2.11.12"
   },
   "dependencies": {
-    "@solidjs/router": "^0.15.4",
-    "firebase": "^12.11.0",
-    "firebase-admin": "^13.7.0",
-    "solid-js": "^1.9.9",
+    "@solidjs/router": "^0.16.1",
+    "firebase": "^12.12.0",
+    "firebase-admin": "^13.8.0",
+    "solid-js": "^1.9.12",
     "zod": "^4.3.6"
   }
 }
