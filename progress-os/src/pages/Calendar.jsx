@@ -3,14 +3,7 @@ import "../styles/calendar.css";
 import { db, auth } from "../lib/firebase.js";
 import { doc, setDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-
-const HABITS = [
-    { id: "workout", label: "Workout", icon: "💪", timed: true },
-    { id: "cold_shower", label: "Cold Shower", icon: "🚿", timed: false },
-    { id: "meditate", label: "Meditate", icon: "🧘", timed: false },
-    { id: "study", label: "Study", icon: "📚", timed: true },
-    { id: "hydration", label: "Hydration", icon: "💧", timed: false },
-];
+import { habits, loadHabits } from "../stores/habits.js";
 
 const RATINGS = [
     { id: "fail", label: "Fail", emoji: "👎" },
@@ -20,15 +13,13 @@ const RATINGS = [
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-// Builds the Firestore doc reference: users/{uid}/dailyLogs/{YYYY-MM-DD}
 const getDayRef = (uid, dateKey) =>
     doc(db, "users", uid, "dailyLogs", dateKey);
 
-// ── Cell component ─────────────────────────────────────────────────────────────
 function CalendarCell({ day, dateKey, isToday, dayData, onOpen }) {
     const info = createMemo(() => dayData()[dateKey] ?? null);
     const rating = createMemo(() => info()?.rating ?? null);
-    const checkedHabits = createMemo(() => HABITS.filter(h => info()?.habits?.[h.id]));
+    const checkedHabits = createMemo(() => habits().filter(h => info()?.habits?.[h.id]));
 
     return (
         <div
@@ -54,7 +45,6 @@ function CalendarCell({ day, dateKey, isToday, dayData, onOpen }) {
     );
 }
 
-// ── Main calendar ──────────────────────────────────────────────────────────────
 export default function Calendar() {
     const today = new Date();
 
@@ -64,22 +54,19 @@ export default function Calendar() {
     const [loading, setLoading] = createSignal(false);
     const [saving, setSaving] = createSignal(false);
 
-    // Popup state
     const [selectedDay, setSelectedDay] = createSignal(null);
     const [popupHabits, setPopupHabits] = createSignal({});
     const [popupRating, setPopupRating] = createSignal(null);
     const [timedMinutes, setTimedMinutes] = createSignal({});
     const [popupNotes, setPopupNotes] = createSignal("");
 
-    // ── Load month from Firestore whenever the user navigates ──────
     const [currentUid, setCurrentUid] = createSignal(null);
 
-    // Wait for Firebase to confirm auth state before doing anything
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         setCurrentUid(user?.uid ?? null);
+        await loadHabits(user.uid);
     });
 
-    // Runs when uid is ready OR when user navigates months
     createEffect(async () => {
         const uid = currentUid();
         if (!uid) return;
@@ -108,7 +95,6 @@ export default function Calendar() {
         }
     });
 
-    // ── Calendar grid math ─────────────────────────────────────────
     const monthName = createMemo(() =>
         new Date(viewYear(), viewMonth(), 1)
             .toLocaleString("default", { month: "long", year: "numeric" })
@@ -144,7 +130,6 @@ export default function Calendar() {
     };
     const goToday = () => { setViewYear(today.getFullYear()); setViewMonth(today.getMonth()); };
 
-    // ── Popup open/close ───────────────────────────────────────────
     const openPopup = (key) => {
         const existing = dayData()[key] || {};
         setSelectedDay(key);
@@ -152,9 +137,8 @@ export default function Calendar() {
         setPopupRating(existing.rating || null);
         setPopupNotes(existing.notes ?? "");
 
-        // Load minutes for every timed habit
         const minutes = {};
-        HABITS.filter(h => h.timed).forEach(h => {
+        habits().filter(h => h.timed).forEach(h => {
             minutes[h.id] = String(existing.habits?.[`${h.id}_minutes`] ?? "");
         });
         setTimedMinutes(minutes);
@@ -165,27 +149,25 @@ export default function Calendar() {
     const toggleHabit = (habitId) =>
         setPopupHabits(h => ({ ...h, [habitId]: !h[habitId] }));
 
-    // ── Save ───────────────────────────────────────────────────────
     const savePopup = async () => {
         const uid = auth.currentUser?.uid;
         if (!uid) return;
 
         const key = selectedDay();
-        const habits = { ...popupHabits() };
+        const habitData = { ...popupHabits() }; 
 
-        // For every timed habit — add minutes if checked, clean up if not
-        HABITS.filter(h => h.timed).forEach(h => {
-            if (habits[h.id]) {
+        habits().filter(h => h.timed).forEach(h => {   
+            if (habitData[h.id]) {
                 const mins = parseInt(timedMinutes()[h.id]);
-                habits[`${h.id}_minutes`] = isNaN(mins) ? 0 : mins;
+                habitData[`${h.id}_minutes`] = isNaN(mins) ? 0 : mins;
             } else {
-                delete habits[h.id];
-                delete habits[`${h.id}_minutes`];  // clean up when unchecked
+                delete habitData[h.id];
+                delete habitData[`${h.id}_minutes`];
             }
         });
 
         const payload = {
-            habits,
+            habits: habitData,                  
             rating: popupRating() ?? null,
             notes: popupNotes().trim(),
             updatedAt: new Date().toISOString(),
@@ -196,7 +178,7 @@ export default function Calendar() {
 
         setSaving(true);
         try {
-            await setDoc(getDayRef(uid, key), payload, { merge: true });
+            await setDoc(getDayRef(uid, key), payload);
         } catch (err) {
             console.error("Firestore write failed:", err);
         } finally {
@@ -213,7 +195,6 @@ export default function Calendar() {
         });
     });
 
-    // ── Render ─────────────────────────────────────────────────────
     return (
         <div class="cal-wrapper">
 
@@ -265,7 +246,7 @@ export default function Calendar() {
                         <div class="cal-popup__section">
                             <p class="cal-popup__label">Habits</p>
                             <div class="cal-habit-list">
-                                <For each={HABITS}>
+                                <For each={habits()}>
                                     {(habit) => (
                                         <div
                                             class={`cal-habit${popupHabits()[habit.id] ? " cal-habit--on" : ""}`}
@@ -279,9 +260,9 @@ export default function Calendar() {
                                 </For>
                             </div>
 
-                            <Show when={HABITS.filter(h => h.timed).some(h => popupHabits()[h.id])}>
+                            <Show when={habits().filter(h => h.timed).some(h => popupHabits()[h.id])}>
                                 <div class="cal-timed-fields">
-                                    <For each={HABITS.filter(h => h.timed && popupHabits()[h.id])}>
+                                    <For each={habits().filter(h => h.timed && popupHabits()[h.id])}>
                                         {(habit) => (
                                             <div class="cal-timed-field">
                                                 <label class="cal-timed-label">

@@ -14,6 +14,9 @@ import UserProfile from "./pages/UserProfile.jsx";
 import Error from "./pages/Error.jsx";
 import Calendar from "./pages/Calendar.jsx";
 import Stats from "./pages/Stats.jsx";
+import WorkoutLogs from "./pages/WorkoutLogs.jsx";
+import Achievements from "./pages/Achievements.jsx";
+import ManageHabits from "./pages/ManageHabits.jsx";
 
 export default function App() {
   return (
@@ -30,6 +33,9 @@ export default function App() {
         </Route>
         <Route path="/calendar" component={Calendar} />
         <Route path="/stats" component={Stats} />
+        <Route path="/logs" component={WorkoutLogs} />
+        <Route path="/achievements" component={Achievements} />
+        <Route path="/manage" component={ManageHabits} />
       </Route>
 
       <Route path="/error" component={Error} />
@@ -62,12 +68,8 @@ function Layout(props) {
         <div class="pos-body">
 
           <aside class="pos-sidebar">
-            <a href="#" class="pos-nav-item">
-              <div class="pos-nav-item__icon">⊞</div>
-              <span class="pos-nav-item__label">Dashboa4rd</span>
-            </a>
 
-            <a href="#" class="pos-nav-item">
+            <a href="/user/logs" class="pos-nav-item">
               <div class="pos-nav-item__icon">✦</div>
               <span class="pos-nav-item__label">Daily Log</span>
             </a>
@@ -82,7 +84,7 @@ function Layout(props) {
               <span class="pos-nav-item__label">Stats</span>
             </a>
 
-            <a href="#" class="pos-nav-item">
+            <a href="/user/achievements" class="pos-nav-item">
               <div class="pos-nav-item__icon">❋</div>
               <span class="pos-nav-item__label">Achievements</span>
             </a>
@@ -90,6 +92,11 @@ function Layout(props) {
             <a href="/user/profile" class="pos-nav-item">
               <div class="pos-nav-item__icon">☰</div>
               <span class="pos-nav-item__label">Profile</span>
+            </a>
+
+            <a href="/user/manage" class="pos-nav-item">
+              <div class="pos-nav-item__icon">A</div>
+              <span class="pos-nav-item__label">Manage</span>
             </a>
           </aside>
 

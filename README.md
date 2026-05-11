@@ -153,7 +153,6 @@ Stranica za dodavanje aktivnosti:
 
 * Add Activity
 * Lista aktivnosti tog dana
-* Daily notes
 
 ---
 
@@ -163,7 +162,6 @@ Prikaz:
 
 * grafova
 * all-time statistika
-* weekly average podataka
 
 ---
 
@@ -187,7 +185,3 @@ Stranica s otključanim postignućima.
 * password reset
 
 ![slika](VisualPrototype.png) 
-
-
-# Firebase struktura (trenutna, mjenjat ce se)
-![slika](CurrectFirebaseStructure.png) 

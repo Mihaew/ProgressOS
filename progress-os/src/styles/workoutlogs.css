@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+    --bg:          #e8e2f5;
+    --surface:     #ffffff;
+    --border:      #d4cce8;
+    --text:        #1e1a2e;
+    --text-muted:  #8b84a8;
+    --accent:      #6b5ecf;
+    --accent-light:#a99de8;
+    --accent-warm: #f5a623;
+    --danger:      #e05555;
+}
+
+/* ── Wrapper ── */
+.wl-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+/* ── Page header ── */
+.wl-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.wl-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    line-height: 1;
+}
+
+.wl-title::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 48px;
+    background: var(--accent-warm);
+    margin-top: 0.4rem;
+    border-radius: 2px;
+}
+
+.wl-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+    letter-spacing: 0.03em;
+}
+
+/* ── New workout button ── */
+.wl-new-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.wl-new-btn:hover {
+    background: #5a4db8;
+    transform: translateY(-1px);
+}
+
+/* ── Loading / empty ── */
+.wl-loading {
+    text-align: center;
+    color: var(--text-muted);
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4rem;
+    opacity: 0.6;
+}
+
+.wl-empty {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.wl-empty__icon {
+    font-size: 3rem;
+    margin: 0 0 0.75rem;
+}
+
+.wl-empty__text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+}
+
+.wl-empty__sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0.4rem 0 0;
+}
+
+/* ── Form ── */
+.wl-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 4px 20px rgba(107, 94, 207, 0.08);
+}
+
+.wl-form__top {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.wl-form__name {
+    flex: 1;
+    min-width: 180px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.wl-form__name:focus {
+    border-color: var(--accent);
+}
+
+.wl-form__date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    cursor: pointer;
+}
+
+.wl-form__date:focus {
+    border-color: var(--accent);
+}
+
+/* ── Exercise block ── */
+.wl-exercise {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.wl-exercise__header {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.wl-exercise__name {
+    flex: 1;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.wl-exercise__name:focus {
+    border-color: var(--accent);
+}
+
+/* ── Set rows ── */
+.wl-set-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 28px;
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.wl-set-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 28px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.wl-set-input {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.wl-set-input:focus {
+    border-color: var(--accent);
+}
+
+/* ── Remove button ── */
+.wl-remove-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1;
+}
+
+.wl-remove-btn:hover {
+    color: var(--danger);
+    background: rgba(224, 85, 85, 0.08);
+}
+
+/* ── Add set / exercise buttons ── */
+.wl-add-set-btn {
+    align-self: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: none;
+    border: 1px dashed var(--accent-light);
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.wl-add-set-btn:hover {
+    background: rgba(107, 94, 207, 0.06);
+}
+
+.wl-add-exercise-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: none;
+    border: 1px dashed var(--accent-light);
+    border-radius: 6px;
+    padding: 0.65rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    width: 100%;
+}
+
+.wl-add-exercise-btn:hover {
+    background: rgba(107, 94, 207, 0.06);
+}
+
+/* ── Form action buttons ── */
+.wl-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.wl-cancel-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.65rem 1.25rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.wl-cancel-btn:hover {
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
+.wl-save-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.wl-save-btn:hover:not(:disabled) {
+    background: #5a4db8;
+}
+
+.wl-save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Past workout cards ── */
+.wl-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wl-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(107, 94, 207, 0.05);
+    transition: border-color 0.2s;
+}
+
+.wl-card:hover {
+    border-color: var(--accent-light);
+}
+
+.wl-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.wl-card__name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+}
+
+.wl-card__date {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0.2rem 0 0;
+}
+
+.wl-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.wl-card__pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    background: #f3f0fb;
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.wl-card__chevron {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-left: 0.25rem;
+}
+
+/* ── Expanded card body ── */
+.wl-card__body {
+    border-top: 1px solid var(--border);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.wl-card__exercise {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wl-card__ex-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+}
+
+.wl-card__sets {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.wl-card__set-header,
+.wl-card__set-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr;
+    gap: 0;
+}
+
+.wl-card__set-header {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.wl-card__set-row {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+}
+
+.wl-card__set-row:last-child {
+    border-bottom: none;
+}
+
+.wl-card__set-num {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+/* ── Delete button ── */
+.wl-delete-btn {
+    align-self: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--danger);
+    background: none;
+    border: 1px solid rgba(224, 85, 85, 0.3);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.wl-delete-btn:hover {
+    background: rgba(224, 85, 85, 0.08);
+    border-color: var(--danger);
+}

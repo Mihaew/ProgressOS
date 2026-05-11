@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+    --bg:           #e8e2f5;
+    --surface:      #ffffff;
+    --border:       #d4cce8;
+    --text:         #1e1a2e;
+    --text-muted:   #8b84a8;
+    --accent:       #6b5ecf;
+    --accent-light: #a99de8;
+    --accent-warm:  #f5a623;
+    --glow-gold:    #f5c842;
+    --glow-purple:  #9b85f5;
+    --done-bg:      #fdf8ec;
+    --done-border:  #f0d97a;
+}
+
+/* ── Wrapper ── */
+.ach-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+.ach-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.ach-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    line-height: 1;
+}
+
+.ach-title::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 48px;
+    background: var(--accent-warm);
+    margin-top: 0.4rem;
+    border-radius: 2px;
+}
+
+.ach-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+    letter-spacing: 0.03em;
+}
+
+/* Overall progress bar */
+.ach-header__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding-top: 0.5rem;
+}
+
+.ach-master-bar-wrap {
+    width: 160px;
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.ach-master-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--glow-purple));
+    border-radius: 99px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ach-master-pct {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* ── Filters ── */
+.ach-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.ach-cats {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.ach-cat-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.ach-cat-btn:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+}
+
+.ach-cat-btn--active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.ach-toggle-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ach-toggle-btn:hover,
+.ach-toggle-btn--active {
+    border-color: var(--accent-light);
+    color: var(--accent);
+}
+
+/* ── Loading / empty ── */
+.ach-loading,
+.ach-empty {
+    text-align: center;
+    margin-top: 4rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* ── Grid ── */
+.ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+/* ── Achievement card — locked ── */
+.ach-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.1rem 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    opacity: 0.6;
+}
+
+.ach-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-light);
+    opacity: 0.8;
+}
+
+/* ── Achievement card — DONE (glowing) ── */
+.ach-card--done {
+    opacity: 1;
+    background: var(--done-bg);
+    border-color: var(--done-border);
+    box-shadow:
+        0 0 0 1px var(--glow-gold),
+        0 0 16px rgba(245, 200, 66, 0.35),
+        0 0 40px rgba(245, 200, 66, 0.15);
+    animation: cardGlow 3s ease-in-out infinite;
+}
+
+.ach-card--done:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 0 1px var(--glow-gold),
+        0 0 24px rgba(245, 200, 66, 0.5),
+        0 0 60px rgba(245, 200, 66, 0.2);
+}
+
+@keyframes cardGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 1px var(--glow-gold),
+            0 0 16px rgba(245, 200, 66, 0.35),
+            0 0 40px rgba(245, 200, 66, 0.12);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px var(--glow-gold),
+            0 0 24px rgba(245, 200, 66, 0.55),
+            0 0 60px rgba(245, 200, 66, 0.22);
+    }
+}
+
+/* Shine streak on done cards */
+.ach-card--done::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.45) 50%,
+        transparent 60%
+    );
+    animation: shine 4s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0%   { left: -75%; }
+    30%, 100% { left: 150%; }
+}
+
+/* ── Icon wrap ── */
+.ach-card__icon-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-size: 1.6rem;
+}
+
+.ach-card--done .ach-card__icon-wrap {
+    background: #fffbe8;
+    border-color: var(--done-border);
+    box-shadow: 0 0 10px rgba(245, 200, 66, 0.3);
+}
+
+.ach-card__check {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    background: #22c55e;
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--done-bg);
+}
+
+/* ── Card body ── */
+.ach-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.ach-card__name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.ach-card--done .ach-card__name {
+    color: #92700a;
+}
+
+.ach-card__desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ── Progress bar ── */
+.ach-card__bar-wrap {
+    width: 100%;
+    height: 5px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 0.4rem;
+}
+
+.ach-card__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-light), var(--accent));
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ach-card--done .ach-card__bar-fill {
+    background: linear-gradient(90deg, var(--accent-warm), var(--glow-gold));
+}
+
+.ach-card__progress {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.ach-card--done .ach-card__progress {
+    color: #b08d2a;
+    font-weight: 600;
+}

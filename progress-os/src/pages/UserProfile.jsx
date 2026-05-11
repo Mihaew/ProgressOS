@@ -101,7 +101,6 @@ export default function UserProfile() {
 
                     <div class="profile-card__actions">
                         <a class="profile-btn profile-btn--ghost" href="/user/password-reset">Reset password</a>
-                        <button class="profile-btn profile-btn--ghost">Resend verification</button>
                     </div>
                 </div>
 
@@ -112,19 +111,11 @@ export default function UserProfile() {
                     <div class="profile-stat-list">
                         <div class="profile-stat">
                             <span class="profile-stat__value">0</span>
-                            <span class="profile-stat__label">Global level</span>
-                        </div>
-                        <div class="profile-stat">
-                            <span class="profile-stat__value">0</span>
                             <span class="profile-stat__label">Daily logs</span>
                         </div>
                         <div class="profile-stat">
                             <span class="profile-stat__value">0</span>
                             <span class="profile-stat__label">Achievements</span>
-                        </div>
-                        <div class="profile-stat">
-                            <span class="profile-stat__value">0</span>
-                            <span class="profile-stat__label">Day streak</span>
                         </div>
                     </div>
                 </div>
